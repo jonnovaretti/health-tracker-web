@@ -4,6 +4,7 @@ import { withTranslation } from "react-i18next";
 import Container from "../../common/Container";
 import { SvgIcon } from "../../common/SvgIcon";
 import { Button } from "../../common/Button";
+import { Link } from "react-router-dom";
 import {
   HeaderSection,
   LogoContainer,
@@ -43,16 +44,17 @@ const Header = ({ t }: any) => {
         <CustomNavLinkSmall onClick={() => scrollTo("mission")}>
           <Span>{t("Mission")}</Span>
         </CustomNavLinkSmall>
-        <CustomNavLinkSmall onClick={() => scrollTo("product")}>
-          <Span>{t("Product")}</Span>
+        <CustomNavLinkSmall onClick={() => scrollTo("service")}>
+          <Span>{t("Service")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall
           style={{ width: "180px" }}
-          onClick={() => scrollTo("contact")}
         >
-          <Span>
-            <Button>{t("Contact")}</Button>
+          <Link to="/register">
+            <Span>
+          <Button>{t("Contact")}</Button>
           </Span>
+          </Link>
         </CustomNavLinkSmall>
       </>
     );
@@ -64,6 +66,9 @@ const Header = ({ t }: any) => {
         <Row justify="space-between">
           <LogoContainer to="/" aria-label="homepage">
             <SvgIcon src="logo.svg" width="101px" height="64px" />
+            <div style={{ marginTop: '18px' }}>
+              <h6> Health Tracker </h6>
+            </div>
           </LogoContainer>
           <NotHidden>
             <MenuItem />

@@ -32,7 +32,7 @@ export const NavLink = styled(Link)`
 export const Extra = styled("section")`
   background: rgb(241, 242, 243);
   position: relative;
-  width: 100%;
+  text-align: left;
   margin-right: auto;
   margin-left: auto;
   padding-bottom: 2rem;
@@ -92,8 +92,7 @@ export const FooterContainer = styled("div")`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  text-align: center;
-  align-items: center;
+  text-align: left;
   transition: all 0.1s ease-in-out;
 
   a {
