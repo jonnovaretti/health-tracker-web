@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { notification } from "antd";
 import axios from "axios";
 
-export const useForm = (validate: any, successMessage: string, callEndRequest: any) => {
+export function useForm(validate: any,
+                        successMessage: string,
+                        callSuccessfulRequest?: any,
+                        callBeforeRequest?: any) 
+{
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
-  const [shouldSubmit, setShouldSubmit] = useState(false);
 
   const openNotificationWithIcon = () => {
     notification["success"]({
@@ -17,16 +20,17 @@ export const useForm = (validate: any, successMessage: string, callEndRequest: a
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     const validationResult = validate(values);
-    setErrors((errors) => ({ ...validationResult, [event.target.name]: "" }));
+    setErrors(() => ({ ...validationResult, [event.target.name]: "" }));
     const url = "http://localhost:3000/users";
 
     if (Object.values(validationResult).every((x) => x === "")) {
+      callBeforeRequest();
       axios
         .post(url, {...values, }, { headers: { 'Content-Type': 'application/json' }})
         .then(() => { 
           setValues("");
           openNotificationWithIcon();
-          callEndRequest();
+          callSuccessfulRequest();
         });
     }
   };

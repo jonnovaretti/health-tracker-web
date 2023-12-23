@@ -1,7 +1,7 @@
 import { lazy, useState } from "react";
 import { Row, Col } from "antd";
 import { Slide, Zoom } from "react-awesome-reveal";
-import { ValidationTypeProps } from "./types";
+import { ValidationTypeProps, RegisterProps } from "./types";
 import { useForm } from "../../common/utils/useForm";
 import Validate from "./validation";
 import { Button } from "../../common/Button";
@@ -9,15 +9,18 @@ import Input from "../../common/Input";
 import { DivContainer, FormGroup, Span, ButtonContainer } from "./styles";
 
 const Container = lazy(() => import("../../common/Container"));
-const Contact = lazy(() => import("../../components/ContactForm"));
+const CodeSenderForm = lazy(() => import("../../components/CodeSenderForm"));
 const SuccessMessage = "You will receive an email to confirm your registration";
 
 const Register = () => {
   const [ showContact, setShowContent ] = useState(false);
-  const Navigate = () => { setShowContent(true); } 
+  const [ email, setEmail ] = useState("");
+  const ShowCodeSenderForm = () => { setShowContent(true); } 
+  const SaveEmail = () => { setEmail(values.email); }
   const { values, errors, handleChange, handleSubmit } = useForm(Validate,
                                                                  SuccessMessage,
-                                                                 Navigate) as any;
+                                                                 ShowCodeSenderForm,
+                                                                 SaveEmail) as RegisterProps | any;
   const ValidationType = ({ type }: ValidationTypeProps) => {
     const ErrorMessage = errors[type];
     return (
@@ -27,9 +30,9 @@ const Register = () => {
     );
   };
   return (
-    <Container>
-     { showContact ? <Contact title={'vla'} content={'ffdfd'} id="contact" /> : null }
-     <DivContainer>
+      <Container>
+      { showContact ? <CodeSenderForm email={email} /> :
+      <DivContainer>
        <Row justify="space-between" align="middle">
          <Col lg={12} md={12} sm={24} xs={24}>
            <Slide direction="right">
@@ -82,6 +85,7 @@ const Register = () => {
          </Col>
        </Row>
      </DivContainer>
+     }
     </Container>
   );
 };
