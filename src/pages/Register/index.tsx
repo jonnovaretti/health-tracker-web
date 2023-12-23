@@ -1,22 +1,23 @@
-import { lazy } from "react";
+import { lazy, useState } from "react";
 import { Row, Col } from "antd";
 import { Slide, Zoom } from "react-awesome-reveal";
 import { ValidationTypeProps } from "./types";
 import { useForm } from "../../common/utils/useForm";
-import validate from "./validation";
+import Validate from "./validation";
 import { Button } from "../../common/Button";
 import Input from "../../common/Input";
 import { ContactContainer, FormGroup, Span, ButtonContainer } from "./styles";
 
 const Container = lazy(() => import("../../common/Container"));
+const Contact = lazy(() => import("../../components/ContactForm"));
+const SuccessMessage = "You will receive an email to confirm your registration";
 
 const Register = () => {
-  const { values, errors, handleChange, handleSubmit } = useForm(
-      validate,
-      4,
-      "You will receive an email to confirm your registration",
-      ) as any;
-
+  const [ showContact, setShowContent ] = useState(false);
+  const Navigate = () => { setShowContent(true); } 
+  const { values, errors, handleChange, handleSubmit } = useForm(Validate,
+                                                                 SuccessMessage,
+                                                                 Navigate) as any;
   const ValidationType = ({ type }: ValidationTypeProps) => {
     const ErrorMessage = errors[type];
     return (
@@ -27,6 +28,7 @@ const Register = () => {
   };
   return (
     <Container>
+     { showContact ? <Contact title={'vla'} content={'ffdfd'} id="contact" /> : null }
      <ContactContainer>
        <Row justify="space-between" align="middle">
          <Col lg={12} md={12} sm={24} xs={24}>

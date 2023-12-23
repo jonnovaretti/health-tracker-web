@@ -5,7 +5,7 @@ export interface validateRegisterProps {
   passwordConfirmation: string;
 }
 
-export default function validate(values: validateRegisterProps) {
+export default function Validate(values: validateRegisterProps) {
   let errors = {} as validateRegisterProps;
 
   if (!values.name) {

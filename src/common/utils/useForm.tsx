@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { notification } from "antd";
 import axios from "axios";
 
-export const useForm = (validate: any, numFields: number, successMessage: string) => {
+export const useForm = (validate: any, successMessage: string, callEndRequest: any) => {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [shouldSubmit, setShouldSubmit] = useState(false);
@@ -16,22 +16,20 @@ export const useForm = (validate: any, numFields: number, successMessage: string
 
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setErrors(validate(values));
+    const validationResult = validate(values);
+    setErrors((errors) => ({ ...validationResult, [event.target.name]: "" }));
     const url = "http://localhost:3000/users";
 
-    if (Object.keys(values).length === numFields) {
+    if (Object.values(validationResult).every((x) => x === "")) {
       axios
         .post(url, {...values, }, { headers: { 'Content-Type': 'application/json' }})
-        .then(() => { setShouldSubmit(true); });
+        .then(() => { 
+          setValues("");
+          openNotificationWithIcon();
+          callEndRequest();
+        });
     }
   };
-
-  useEffect(() => {
-    if (Object.keys(errors).length === 0 && shouldSubmit) {
-      setValues("");
-      openNotificationWithIcon();
-    }
-  }, [errors, shouldSubmit]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.persist();
