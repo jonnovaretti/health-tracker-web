@@ -6,7 +6,7 @@ import { useForm } from "../../common/utils/useForm";
 import Validate from "./validation";
 import { Button } from "../../common/Button";
 import Input from "../../common/Input";
-import { ContactContainer, FormGroup, Span, ButtonContainer } from "./styles";
+import { DivContainer, FormGroup, Span, ButtonContainer } from "./styles";
 
 const Container = lazy(() => import("../../common/Container"));
 const Contact = lazy(() => import("../../components/ContactForm"));
@@ -29,7 +29,7 @@ const Register = () => {
   return (
     <Container>
      { showContact ? <Contact title={'vla'} content={'ffdfd'} id="contact" /> : null }
-     <ContactContainer>
+     <DivContainer>
        <Row justify="space-between" align="middle">
          <Col lg={12} md={12} sm={24} xs={24}>
            <Slide direction="right">
@@ -81,7 +81,7 @@ const Register = () => {
            </Slide>
          </Col>
        </Row>
-     </ContactContainer>
+     </DivContainer>
     </Container>
   );
 };
