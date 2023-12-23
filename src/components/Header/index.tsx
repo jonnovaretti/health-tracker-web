@@ -52,7 +52,7 @@ const Header = ({ t }: any) => {
         >
           <Link to="/register">
             <Span>
-          <Button>{t("Contact")}</Button>
+          <Button>{t("Register")}</Button>
           </Span>
           </Link>
         </CustomNavLinkSmall>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { notification } from "antd";
 import axios from "axios";
 
-export const useForm = (validate: any) => {
+export const useForm = (validate: any, numFields: number, successMessage: string) => {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [shouldSubmit, setShouldSubmit] = useState(false);
@@ -10,23 +10,19 @@ export const useForm = (validate: any) => {
   const openNotificationWithIcon = () => {
     notification["success"]({
       message: "Success",
-      description: "Your message has been sent!",
+      description: successMessage,
     });
   };
 
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     setErrors(validate(values));
-    // Your url for API
-    const url = "";
-    if (Object.keys(values).length === 3) {
+    const url = "http://localhost:3000/users";
+
+    if (Object.keys(values).length === numFields) {
       axios
-        .post(url, {
-          ...values,
-        })
-        .then(() => {
-          setShouldSubmit(true);
-        });
+        .post(url, {...values, }, { headers: { 'Content-Type': 'application/json' }})
+        .then(() => { setShouldSubmit(true); });
     }
   };
 

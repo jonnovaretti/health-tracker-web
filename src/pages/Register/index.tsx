@@ -1,20 +1,21 @@
 import { lazy } from "react";
 import { Row, Col } from "antd";
 import { Slide, Zoom } from "react-awesome-reveal";
-import { ContactProps, ValidationTypeProps } from "./types";
+import { ValidationTypeProps } from "./types";
 import { useForm } from "../../common/utils/useForm";
-import validate from "../../common/utils/validationRules";
+import validate from "./validation";
 import { Button } from "../../common/Button";
 import Input from "../../common/Input";
-import TextArea from "../../common/TextArea";
 import { ContactContainer, FormGroup, Span, ButtonContainer } from "./styles";
 
 const Container = lazy(() => import("../../common/Container"));
 
 const Register = () => {
   const { values, errors, handleChange, handleSubmit } = useForm(
-    validate
-  ) as any;
+      validate,
+      4,
+      "You will receive an email to confirm your registration",
+      ) as any;
 
   const ValidationType = ({ type }: ValidationTypeProps) => {
     const ErrorMessage = errors[type];
