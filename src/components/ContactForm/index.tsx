@@ -11,13 +11,10 @@ import TextArea from "../../common/TextArea";
 import { ContactContainer, FormGroup, Span, ButtonContainer } from "./styles";
 
 const Contact = ({ title, content, id, t }: ContactProps) => {
-  const callCodeField = () => {
-  };
-  const { values, errors, handleChange, handleSubmit } = useForm(
-      validate,
-      "Your message has been sent!",
-      callCodeField
-      ) as any;
+  const { values, errors, handleChange, handleSubmit } = useForm(validate,
+                                                                 'contact',
+                                                                 "Your message has been sent!",
+                                                                 ) as any;
 
   const ValidationType = ({ type }: ValidationTypeProps) => {
     const ErrorMessage = errors[type];

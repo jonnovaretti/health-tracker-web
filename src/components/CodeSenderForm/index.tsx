@@ -13,7 +13,9 @@ const SuccessMessage = "The confirmation code successful";
 
 const CodeSenderForm = (props: { email: string }) => {
   useEffect(() => { values.email = props.email; });
-  const { values, errors, handleChange, handleSubmit } = useForm(Validate, SuccessMessage) as any;
+  const { values, errors, handleChange, handleSubmit } = useForm(Validate,
+                                                                 'users/confirm',
+                                                                 SuccessMessage) as any;
   const ValidationType = ({ type }: ValidationTypeProps) => {
     const ErrorMessage = errors[type];
     return (

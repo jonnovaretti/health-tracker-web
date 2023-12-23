@@ -3,6 +3,7 @@ import { notification } from "antd";
 import axios from "axios";
 
 export function useForm(validate: any,
+                        endpoint: string,
                         successMessage: string,
                         callSuccessfulRequest?: any,
                         callBeforeRequest?: any) 
@@ -21,16 +22,17 @@ export function useForm(validate: any,
     event.preventDefault();
     const validationResult = validate(values);
     setErrors(() => ({ ...validationResult, [event.target.name]: "" }));
-    const url = "http://localhost:3000/users";
+    const url = "http://localhost:3000/" + endpoint;
 
     if (Object.values(validationResult).every((x) => x === "")) {
-      callBeforeRequest();
+      if (callBeforeRequest !== undefined) callBeforeRequest();
+
       axios
         .post(url, {...values, }, { headers: { 'Content-Type': 'application/json' }})
         .then(() => { 
           setValues("");
           openNotificationWithIcon();
-          callSuccessfulRequest();
+          if (callSuccessfulRequest !== undefined) callSuccessfulRequest();
         });
     }
   };
