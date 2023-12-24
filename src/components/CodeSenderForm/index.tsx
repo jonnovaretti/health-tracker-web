@@ -12,7 +12,7 @@ const Container = lazy(() => import("../../common/Container"));
 const SuccessMessage = "The confirmation code successful";
 
 const CodeSenderForm = (props: { email: string }) => {
-  useEffect(() => { values.email = props.email; });
+  useEffect(() => { values.email = props.email; }, []);
   const { values, errors, handleChange, handleSubmit } = useForm(Validate,
                                                                  'users/confirm',
                                                                  SuccessMessage) as any;

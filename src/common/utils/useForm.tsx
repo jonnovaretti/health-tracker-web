@@ -18,6 +18,13 @@ export function useForm(validate: any,
     });
   };
 
+  const openNotificationError = (message: string) => {
+    notification["error"]({
+      message: "Error",
+      description: message
+    });
+  }
+
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     const validationResult = validate(values);
@@ -33,6 +40,13 @@ export function useForm(validate: any,
           setValues("");
           openNotificationWithIcon();
           if (callSuccessfulRequest !== undefined) callSuccessfulRequest();
+        })
+        .catch((err) => {
+          if (Array.isArray(err.response.data.message)) {
+            openNotificationError(err.response.data.message[0]); 
+          } else {
+            openNotificationError(err.response.data.message);
+          }
         });
     }
   };
