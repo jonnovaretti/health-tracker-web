@@ -11,10 +11,11 @@ import { DivContainer, FormGroup, Span, ButtonContainer } from "./styles";
 const Container = lazy(() => import("../../common/Container"));
 const SuccessMessage = "Login successfull";
 const Nagivate = () => {};
-const { values, errors, handleChange, handleSubmit } = useForm(Validate,
-                                                               'login',
-                                                               SuccessMessage,
-                                                               Nagivate) as any;
+const Login = () => {
+  const { values, errors, handleChange, handleSubmit } = useForm(Validate,
+                                                                 'users/login',
+                                                                 SuccessMessage,
+                                                                 Nagivate) as any;
 
   const ValidationType = ({ type }: ValidationTypeProps) => {
     const ErrorMessage = errors[type];
@@ -25,7 +26,6 @@ const { values, errors, handleChange, handleSubmit } = useForm(Validate,
     );
   };
 
-const Login = () => {
   return (
     <Container>
       <DivContainer>

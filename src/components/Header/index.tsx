@@ -56,6 +56,15 @@ const Header = ({ t }: any) => {
           </Span>
           </Link>
         </CustomNavLinkSmall>
+        <CustomNavLinkSmall
+          style={{ width: "180px" }}
+        >
+          <Link to="/login">
+            <Span>
+          <Button>{t("Login")}</Button>
+          </Span>
+          </Link>
+        </CustomNavLinkSmall>
       </>
     );
   };
