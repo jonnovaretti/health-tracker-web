@@ -29,7 +29,7 @@ export function useForm(validate: any,
     event.preventDefault();
     const validationResult = validate(values);
     setErrors(() => ({ ...validationResult, [event.target.name]: "" }));
-    const url = "http://localhost:3000/" + endpoint;
+    const url = process.env.REACT_APP_API_URL + endpoint;
 
     if (Object.values(validationResult).every((x) => x === "")) {
       if (callBeforeRequest !== undefined) callBeforeRequest();
