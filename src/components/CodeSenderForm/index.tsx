@@ -9,7 +9,7 @@ import { ValidationTypeProps } from "./types";
 import { Slide, Zoom } from "react-awesome-reveal";
 
 const Container = lazy(() => import("../../common/Container"));
-const SuccessMessage = "The confirmation code successful";
+const SuccessMessage = "The confirmation successful";
 
 const CodeSenderForm = (props: { email: string }) => {
   useEffect(() => { values.email = props.email; }, []);
