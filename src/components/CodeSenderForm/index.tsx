@@ -19,7 +19,7 @@ const CodeSenderForm = (loadCodeSender: LoadCodeSender) => {
   const { values, errors, handleChange, handleSubmit } = useForm(Validate,
                                                                  'users/confirm',
                                                                  SuccessMessage) as any;
-  useEffect(() => { values.email = loadCodeSender.email; }, [values, loadCodeSender]);
+  useEffect(() => { values.email = loadCodeSender.email; }, []);
   const ValidationType = ({ type }: ValidationTypeProps) => {
     const ErrorMessage = errors[type];
     return (
