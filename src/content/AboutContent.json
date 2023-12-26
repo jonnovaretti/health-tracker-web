@@ -1,15 +1,15 @@
 {
-  "title": "Light, fast & responsive",
-  "text": "This template is ready to use, so you don't need to change anything at a component level, unless you want to customize the default styling.",
+  "title": "Leave AI support your well-being",
+  "text": "Visualize your health journey, track progress, and gain a comprehensive understanding of your well-being like never before.",
   "section": [
     {
-      "title": "Why Antd?",
-      "content": "Ant Design is a React UI library that has a lot of easy-to-use components for building elegant UI.",
+      "title": "Why tracker data?",
+      "content": "Dive into a world of insights as our health tracker platform.",
       "icon": "notes.svg"
     },
     {
-      "title": "Why styled-components?",
-      "content": "Styled Components gives you total control over your components.",
+      "title": "Every details will be here",
+      "content": "Empower yourself with the tools you need to make informed decisions for a healthier, happier life.",
       "icon": "notes.svg"
     }
   ]
