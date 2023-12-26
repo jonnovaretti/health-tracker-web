@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Row, Col, Drawer } from "antd";
 import { withTranslation } from "react-i18next";
 import Container from "../../common/Container";
 import { SvgIcon } from "../../common/SvgIcon";
 import { Button } from "../../common/Button";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import {
   HeaderSection,
   LogoContainer,
@@ -29,12 +29,21 @@ const Header = ({ t }: any) => {
   };
 
   const MenuItem = () => {
+    const location = useLocation();
+    const history = useHistory();
+    const [scrollId, setScrollId] = useState();
+    useEffect(() => {
+      debugger
+    }, []);
     const scrollTo = (id: string) => {
-      const element = document.getElementById(id) as HTMLDivElement;
-      element.scrollIntoView({
-        behavior: "smooth",
-      });
-      setVisibility(false);
+      debugger
+      if (location.pathname == '/') {
+        const element = document.getElementById(id) as HTMLDivElement;
+        element.scrollIntoView({ behavior: "smooth", });
+        setVisibility(false);
+      } else {
+        history.push('/#/' + id);
+      }
     };
     return (
       <>
@@ -44,21 +53,17 @@ const Header = ({ t }: any) => {
         <CustomNavLinkSmall onClick={() => scrollTo("mission")}>
           <Span>{t("Mission")}</Span>
         </CustomNavLinkSmall>
-        <CustomNavLinkSmall onClick={() => scrollTo("service")}>
-          <Span>{t("Service")}</Span>
+        <CustomNavLinkSmall onClick={() => scrollTo("contact")}>
+          <Span>{t("Contact")}</Span>
         </CustomNavLinkSmall>
-        <CustomNavLinkSmall
-          style={{ width: "180px" }}
-        >
+        <CustomNavLinkSmall style={{ width: "130px" }} >
           <Link to="/register">
             <Span>
           <Button>{t("Register")}</Button>
           </Span>
           </Link>
         </CustomNavLinkSmall>
-        <CustomNavLinkSmall
-          style={{ width: "180px" }}
-        >
+        <CustomNavLinkSmall style={{ width: "130px" }} >
           <Link to="/login">
             <Span>
           <Button>{t("Login")}</Button>

@@ -24,6 +24,14 @@ const Home = () => {
         icon="intro.svg"
         id="intro"
       />
+      <ContentBlock
+        type="left"
+        title={AboutContent.title}
+        content={AboutContent.text}
+        section={AboutContent.section}
+        icon="graphs.svg"
+        id="mission"
+      />
       <MiddleBlock
         title={MiddleBlockContent.title}
         content={MiddleBlockContent.text}
@@ -31,18 +39,10 @@ const Home = () => {
       />
       <ContentBlock
         type="left"
-        title={AboutContent.title}
-        content={AboutContent.text}
-        section={AboutContent.section}
-        icon="graphs.svg"
-        id="about"
-      />
-      <ContentBlock
-        type="left"
         title={ServiceContent.title}
         content={ServiceContent.text}
         icon="waving.svg"
-        id="service"
+        id="about"
       />
       <Contact
         title={ContactContent.title}

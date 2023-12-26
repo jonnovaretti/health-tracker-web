@@ -7,19 +7,18 @@ import { useForm } from "../../common/utils/useForm";
 import Validate from "./validate";
 import { ValidationTypeProps } from "./types";
 import { Slide, Zoom } from "react-awesome-reveal";
+import { useHistory } from "react-router-dom";
 
 const Container = lazy(() => import("../../common/Container"));
-const SuccessMessage = "The confirmation successful";
-
-interface LoadCodeSender {
-  email: string;
-}
-
-const CodeSenderForm = (loadCodeSender: LoadCodeSender) => {
+const SuccessMessage = "Successfully confirmation";
+const CodeSenderForm = (props: { email: string }) => {
+  const history = useHistory();
+  const Navigate = () => { history.push('/login'); }
+  useEffect(() => { values.email = props.email; }, []);
   const { values, errors, handleChange, handleSubmit } = useForm(Validate,
                                                                  'users/confirm',
-                                                                 SuccessMessage) as any;
-  useEffect(() => { values.email = loadCodeSender.email; }, []);
+                                                                 SuccessMessage,
+                                                                 Navigate) as any;
   const ValidationType = ({ type }: ValidationTypeProps) => {
     const ErrorMessage = errors[type];
     return (
@@ -41,7 +40,7 @@ const CodeSenderForm = (loadCodeSender: LoadCodeSender) => {
                       type="text"
                       name="email"
                       placeholder="Your Email"
-                      value={loadCodeSender.email || ""}
+                      value={props.email || ""}
                       onChange={handleChange}
                     />
                     <ValidationType type="email" />
