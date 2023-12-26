@@ -11,11 +11,15 @@ import { Slide, Zoom } from "react-awesome-reveal";
 const Container = lazy(() => import("../../common/Container"));
 const SuccessMessage = "The confirmation successful";
 
-const CodeSenderForm = (props: { email: string }) => {
-  useEffect(() => { values.email = props.email; }, []);
+interface LoadCodeSender {
+  email: string;
+}
+
+const CodeSenderForm = (loadCodeSender: LoadCodeSender) => {
   const { values, errors, handleChange, handleSubmit } = useForm(Validate,
                                                                  'users/confirm',
                                                                  SuccessMessage) as any;
+  useEffect(() => { values.email = loadCodeSender.email; }, [values, loadCodeSender]);
   const ValidationType = ({ type }: ValidationTypeProps) => {
     const ErrorMessage = errors[type];
     return (
@@ -37,7 +41,7 @@ const CodeSenderForm = (props: { email: string }) => {
                       type="text"
                       name="email"
                       placeholder="Your Email"
-                      value={props.email || ""}
+                      value={loadCodeSender.email || ""}
                       onChange={handleChange}
                     />
                     <ValidationType type="email" />

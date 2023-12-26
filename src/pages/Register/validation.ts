@@ -19,7 +19,7 @@ export default function Validate(values: validateRegisterProps) {
   if (!values.password) {
     errors.password = "Password is required";
   }
-  if (values.password != values.passwordConfirmation) {
+  if (values.password !== values.passwordConfirmation) {
     errors.passwordConfirmation = "Confirmation needs be to equal to password";
   }
   return errors;
