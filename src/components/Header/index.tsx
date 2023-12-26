@@ -31,12 +31,13 @@ const Header = ({ t }: any) => {
   const MenuItem = () => {
     const location = useLocation();
     const history = useHistory();
-    const [scrollId, setScrollId] = useState();
     useEffect(() => {
-      debugger
-    }, []);
+        if (location.hash.length > 1) {
+          const scrollId = location.hash.substring(location.hash.lastIndexOf('/') + 1);
+          scrollTo(scrollId);
+        }
+    }, [location]);
     const scrollTo = (id: string) => {
-      debugger
       if (location.pathname == '/') {
         const element = document.getElementById(id) as HTMLDivElement;
         element.scrollIntoView({ behavior: "smooth", });
