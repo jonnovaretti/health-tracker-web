@@ -6,6 +6,7 @@ export interface validateRegisterProps {
 }
 
 export default function Validate(values: validateRegisterProps) {
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%]).{8,24}$/;
   let errors = {} as validateRegisterProps;
 
   if (!values.name) {
@@ -18,6 +19,9 @@ export default function Validate(values: validateRegisterProps) {
   }
   if (!values.password) {
     errors.password = "Password is required";
+  }
+  if (!passwordRegex.test(values.password)) {
+    errors.password = "Password does not meet the requirements";
   }
   if (values.password !== values.passwordConfirmation) {
     errors.passwordConfirmation = "Confirmation needs be to equal to password";

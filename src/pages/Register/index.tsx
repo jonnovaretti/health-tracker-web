@@ -6,7 +6,7 @@ import { useForm } from "../../common/utils/useForm";
 import Validate from "./validation";
 import { Button } from "../../common/Button";
 import Input from "../../common/Input";
-import { DivContainer, FormGroup, Span, ButtonContainer } from "./styles";
+import { DivContainer, Label, FormGroup, Span, ButtonContainer } from "./styles";
 
 const Container = lazy(() => import("../../common/Container"));
 const CodeSenderForm = lazy(() => import("../../components/CodeSenderForm"));
@@ -67,6 +67,11 @@ const Register = () => {
                    onChange={handleChange}
                  />
                  <ValidationType type="password" />
+                 <Label htmlFor={"password"}>{"Password requirement"}</Label>
+                 <Label htmlFor={"password"}>{"Contains at least 1 number"}</Label>
+                 <Label htmlFor={"password"}>{"Contains at least 1 special character"}</Label>
+                 <Label htmlFor={"password"}>{"Contains at least 1 uppercase letter"}</Label>
+                 <Label htmlFor={"password"}>{"Contains at least 1 lowercase letter"}</Label>
                </Col>
                <Col span={24}>
                  <Input

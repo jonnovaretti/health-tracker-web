@@ -38,7 +38,7 @@ const Header = ({ t }: any) => {
         }
     }, [location]);
     const scrollTo = (id: string) => {
-      if (location.pathname == '/') {
+     if (location.pathname == '/') {
         const element = document.getElementById(id) as HTMLDivElement;
         element.scrollIntoView({ behavior: "smooth", });
         setVisibility(false);
