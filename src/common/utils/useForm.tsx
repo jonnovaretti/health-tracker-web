@@ -11,14 +11,14 @@ export function useForm(validate: any,
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
 
-  const openNotificationWithIcon = () => {
+  const showSuccessNoticication = (message: string) => {
     notification["success"]({
       message: "Success",
-      description: successMessage,
+      description: message,
     });
   };
 
-  const openNotificationError = (message: string) => {
+  const showNotificationError = (message: string) => {
     notification["error"]({
       message: "Error",
       description: message
@@ -36,16 +36,16 @@ export function useForm(validate: any,
 
       axios
         .post(url, {...values, }, { headers: { 'Content-Type': 'application/json' }})
-        .then(() => { 
+        .then((response) => { 
           setValues("");
-          openNotificationWithIcon();
-          if (callSuccessfulRequest !== undefined) callSuccessfulRequest();
+          showSuccessNoticication(successMessage);
+          if (callSuccessfulRequest !== undefined) callSuccessfulRequest(response.data);
         })
         .catch((err) => {
           if (Array.isArray(err.response.data.message)) {
-            openNotificationError(err.response.data.message[0]); 
+            showNotificationError(err.response.data.message[0]); 
           } else {
-            openNotificationError(err.response.data.message);
+            showNotificationError(err.response.data.message);
           }
         });
     }

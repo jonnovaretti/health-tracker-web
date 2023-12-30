@@ -1,7 +1,7 @@
 import { lazy } from "react";
 import { Row, Col } from "antd";
 import { Slide, Zoom } from "react-awesome-reveal";
-import { ValidationTypeProps } from "./types";
+import { ResponseToken, ValidationTypeProps } from "./types";
 import { useForm } from "../../common/utils/useForm";
 import Validate from "./validation";
 import { Button } from "../../common/Button";
@@ -10,12 +10,14 @@ import { DivContainer, FormGroup, Span, ButtonContainer } from "./styles";
 
 const Container = lazy(() => import("../../common/Container"));
 const SuccessMessage = "Login successfull";
-const Nagivate = () => {};
+const FinishRequest = (response: ResponseToken) => {
+  console.log(response);
+};
 const Login = () => {
-  const { values, errors, handleChange, handleSubmit } = useForm(Validate,
-                                                                 'users/login',
-                                                                 SuccessMessage,
-                                                                 Nagivate) as any;
+  const { values, errors, handleChange, handleSubmit, response } = useForm(Validate,
+                                                                           'users/login',
+                                                                           SuccessMessage,
+                                                                           FinishRequest) as any;
 
   const ValidationType = ({ type }: ValidationTypeProps) => {
     const ErrorMessage = errors[type];

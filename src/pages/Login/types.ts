@@ -6,3 +6,8 @@ export interface LoginProps {
 export interface ValidationTypeProps {
   type: any;
 }
+
+export interface ResponseToken {
+  accessToken: string;
+  refreshToken: string;
+}
