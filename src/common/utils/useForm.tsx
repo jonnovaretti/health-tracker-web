@@ -42,10 +42,12 @@ export function useForm(validate: any,
           if (callSuccessfulRequest !== undefined) callSuccessfulRequest(response.data);
         })
         .catch((err) => {
-          if (Array.isArray(err.response.data.message)) {
+          if (Array.isArray(err.response?.data?.message)) {
             showNotificationError(err.response.data.message[0]); 
-          } else {
+          } else if (err.response?.data.message) {
             showNotificationError(err.response.data.message);
+          } else {
+            showNotificationError('An error has occurred, please,try again');
           }
         });
     }
