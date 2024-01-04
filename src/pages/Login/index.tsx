@@ -7,14 +7,14 @@ import Validate from "./validation";
 import { Button } from "../../common/Button";
 import Input from "../../common/Input";
 import { DivContainer, FormGroup, Span, ButtonContainer } from "./styles";
-import { useHistory } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 const Container = lazy(() => import("../../common/Container"));
 const SuccessMessage = "Login successfull";
 const Login = () => {
-  const history = useHistory();
+  const navigateTo = useNavigate();
   const FinishRequest = () => {
-    history.push('/dashboard');
+    navigateTo('/dashboard');
   };
   const { values, errors, handleChange, handleSubmit, response } = useForm(Validate,
                                                                            'users/login',

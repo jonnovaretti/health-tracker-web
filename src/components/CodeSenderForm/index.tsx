@@ -7,13 +7,13 @@ import { useForm } from "../../common/utils/useForm";
 import Validate from "./validate";
 import { ValidationTypeProps } from "./types";
 import { Slide, Zoom } from "react-awesome-reveal";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Container = lazy(() => import("../../common/Container"));
 const SuccessMessage = "Successfully confirmation";
 const CodeSenderForm = (props: { email: string }) => {
-  const history = useHistory();
-  const Navigate = () => { history.push('/login'); }
+  const navigateTo = useNavigate();
+  const Navigate = () => { navigateTo('/login'); }
   useEffect(() => { values.email = props.email; }, []);
   const { values, errors, handleChange, handleSubmit } = useForm(Validate,
                                                                  'users/confirm',

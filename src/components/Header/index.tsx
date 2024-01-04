@@ -4,7 +4,7 @@ import { withTranslation } from "react-i18next";
 import Container from "../../common/Container";
 import { SvgIcon } from "../../common/SvgIcon";
 import { Button } from "../../common/Button";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   HeaderSection,
   LogoContainer,
@@ -30,7 +30,7 @@ const Header = ({ t }: any) => {
 
   const MenuItem = () => {
     const location = useLocation();
-    const history = useHistory();
+    const navigateTo = useNavigate();
     useEffect(() => {
         if (location.hash.length > 1) {
           const scrollId = location.hash.substring(location.hash.lastIndexOf('/') + 1);
@@ -40,10 +40,12 @@ const Header = ({ t }: any) => {
     const scrollTo = (id: string) => {
      if (location.pathname == '/') {
         const element = document.getElementById(id) as HTMLDivElement;
-        element.scrollIntoView({ behavior: "smooth", });
-        setVisibility(false);
+        if (element !== null) {
+         element.scrollIntoView({ behavior: "smooth", });
+         setVisibility(false);
+        }
       } else {
-        history.push('/#/' + id);
+         navigateTo('/#/' + id);
       }
     };
     return (
