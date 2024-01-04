@@ -1,4 +1,4 @@
-import * as React from "react";
+import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -7,27 +7,27 @@ import { Styles } from "../styles/styles";
 
 const Router = () => {
   return (
-    <React.Suspense fallback={null}>
+    <Suspense fallback={null}>
       <Styles />
       <Header />
       <Routes>
         {routes.map((routeItem) => {
-          const Component = React.lazy(() => import('../pages/' + routeItem.component));
+          const Component = lazy(() => import('../pages/' + routeItem.component));
           return (
             <Route
               key={routeItem.component}
               path={routeItem.path}
               element={
-               <React.Suspense fallback={<>...</>}>
+               <Suspense fallback={<>...</>}>
                  <Component />
-               </React.Suspense>
+               </Suspense>
               }
             />
           );
         })}
       </Routes>
       <Footer />
-    </React.Suspense>
+    </Suspense>
   );
 };
 
