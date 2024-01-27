@@ -4,9 +4,9 @@ import MenuList from "../../common/MenuList";
 import Container from "../../common/Container";
 import { Row, Col } from "antd";
 import Input from "../../common/Input";
+import { Outlet } from "react-router-dom";
 
 const Dasboard = () => {
-  const handleChange = () => {};
   return (
     <Container>
       <Row justify="space-between" align="middle">
@@ -20,12 +20,7 @@ const Dasboard = () => {
         <Col lg={17}>
           <Slide direction="right">
               <Col span={24}>
-                <Input
-                  type="file"
-                  name="Upload new blood test file"
-                  placeholder="Your file"
-                  onChange={handleChange}
-                />
+                <Outlet />
               </Col>
           </Slide>
         </Col>

@@ -1,11 +1,11 @@
 import { Container, Item, ListContainer, TextItem } from "./styles";
 
-const MenuList = (props: any) => (
+const MenuList = () => (
   <Container>
     <ListContainer>
       <Item>
         <TextItem>
-          {"Files"}
+          {"Search"}
         </TextItem>
       </Item>
       <Item>

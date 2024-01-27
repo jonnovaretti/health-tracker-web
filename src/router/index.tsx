@@ -17,12 +17,16 @@ const Router = () => {
             <Route
               key={routeItem.component}
               path={routeItem.path}
-              element={
-               <Suspense fallback={<>...</>}>
-                 <Component />
-               </Suspense>
-              }
-            />
+              element={ <Component /> }>
+                {routeItem?.children?.map((routeChild) => {
+                  const ComponentChild = lazy(() => import('../pages/' + routeChild.component));
+                  return (<Route
+                    key={routeChild.component}
+                    path={routeChild.path}
+                    element={<ComponentChild />}
+                  />)
+                })}
+            </Route>
           );
         })}
       </Routes>

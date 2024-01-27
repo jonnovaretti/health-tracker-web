@@ -17,7 +17,14 @@ const routes = [
   {
     path: "/dashboard",
     exact: true,
-    component: "Dashboard"
+    component: "Dashboard",
+    children: [
+      {
+        path: "/dashboard/search",
+        exact: true,
+        component: "Search",
+      }
+    ],
   }
 ];
 
